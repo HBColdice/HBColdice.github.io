@@ -176,7 +176,7 @@
     </svg>
 </div>
 <div class="name">
-    宝贝
+    茹茹天使💖~
 </div>
 <div class="happy">
     <img src="img/HappyBirthday.png">
@@ -203,7 +203,7 @@
                 </a>
             </td>
             <td>
-                <a href="#" class="lk1 no-like">
+                <a href="javascript:noLike()" class="lk1 no-like">
                     <div class="link1">
                         <div class="bt1" STYLE="font-size: 20px">
                             我不喜欢
@@ -248,13 +248,17 @@
 
     function love() {
         $('#ILove').remove();
-        $("#isLike").append(`<div class="lk1" id="ILove" style=" opacity:0;font-size:10px;margin-top: 20px" >我也喜欢你</div>`);
+        $("#isLike").append(`<div class="lk1" id="ILove" style=" opacity:0;font-size:10px;margin-top: 20px" >我也喜欢你，超级喜欢</div>`);
         $('#ILove').animate({
             opacity: "1",
             fontSize: '30px',
             marginTop: '20px'
         }, 300);
     }
+
+    function noLike() {
+    alert("哦no，不可以不喜欢！🥺\n你必须喜欢！！！");
+}
 </script>
 </body>
 

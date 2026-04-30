@@ -80,11 +80,20 @@
 </head>
 <body>
 
+ <audio src="music/1.mp3" autoplay="autoplay" loop="loop"></audio>
+
+
+ <script>
+document.addEventListener('click', function() {
+  window.speechSynthesis.resume();
+}, { once: true });
+</script>
+   
 <!-- 1. 情书页 -->
 <div class="section first-screen">
     <div class="love-letter-container">
         <div class="letter-header">
-            <h2 class="letter-title">🎂 生日快乐 ~ 我的小公主 🎂</h2>
+            <h2 class="letter-title">🎂 生日快乐~ 茹茹宝贝~ 🎂</h2>
             <p class="letter-subtitle">致我最亲爱的茹茹宝贝</p>
             <div class="letter-divider"></div>
         </div>
@@ -174,7 +183,7 @@
     <div class="fireworks" id="fireworks"></div>
     <div class="cake">🎂</div>
     <div class="final-text">小美女记得许愿哦</div>
-    <div class="final-text">祝你们幸福呀，长长久久~</div>
+    <div class="final-text">祝我们幸福呀，长长久久~</div>
     <div class="final-text">💖 永远相爱，岁岁年年 💖</div>
 </div>
 
