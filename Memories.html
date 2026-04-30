@@ -84,10 +84,14 @@
 
 
  <script>
-document.addEventListener('click', function() {
-  window.speechSynthesis.resume();
-}, { once: true });
-</script>
+    document.addEventListener('touchstart', function() {
+      window.speechSynthesis.resume();
+    }, { once: true });
+    
+    document.addEventListener('click', function() {
+      window.speechSynthesis.resume();
+    }, { once: true });
+    </script>
    
 <!-- 1. 情书页 -->
 <div class="section first-screen">
