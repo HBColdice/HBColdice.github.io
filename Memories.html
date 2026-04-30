@@ -94,14 +94,23 @@
     </script>
 
 
- <script>
-    function unlockAudio(){
-        let t = new Audio("music/gift1.mp3");
-        t.play().catch(()=>{});
-    }
-    document.addEventListener("touchstart",unlockAudio,{once:true});
-    document.addEventListener("click",unlockAudio,{once:true});
-    </script>
+    <script>
+        var unlocked = false;
+        function unlockAudio() {
+            if(unlocked) return;
+            try {
+                let a = new Audio("music/gift1.mp3");
+                a.volume = 0.01;
+                a.play().catch(()=>{});
+                unlocked = true;
+            }catch(e){}
+        }
+    
+        // 全方式激活，跳转页面也能生效
+        document.addEventListener("touchstart", unlockAudio);
+        document.addEventListener("click", unlockAudio);
+        window.addEventListener("load", unlockAudio);
+        </script>
    
 <!-- 1. 情书页 -->
 <div class="section first-screen">
