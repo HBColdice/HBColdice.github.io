@@ -80,17 +80,27 @@
 </head>
 <body>
 
- <audio src="music/1.mp3" autoplay="autoplay" loop="loop"></audio>
+    <audio id="bgMusic" src="music/1.mp3" loop="loop"></audio>
+
+    <script>
+    // 微信/手机浏览器 强制激活背景音乐
+    function playMusic() {
+      var audio = document.getElementById('bgMusic');
+      audio.play().catch(() => {});
+    }
+    document.addEventListener('touchstart', playMusic);
+    document.addEventListener('click', playMusic);
+    window.onload = playMusic;
+    </script>
 
 
  <script>
-    document.addEventListener('touchstart', function() {
-      window.speechSynthesis.resume();
-    }, { once: true });
-    
-    document.addEventListener('click', function() {
-      window.speechSynthesis.resume();
-    }, { once: true });
+    function unlockAudio(){
+        let t = new Audio("music/gift1.mp3");
+        t.play().catch(()=>{});
+    }
+    document.addEventListener("touchstart",unlockAudio,{once:true});
+    document.addEventListener("click",unlockAudio,{once:true});
     </script>
    
 <!-- 1. 情书页 -->
@@ -207,12 +217,22 @@ let usedGifts = []; // 已抽中的奖品
 const specialGift = "Marry me";
 
 // 语音播报
-function speak(text) {
-    try {
-        let msg = new SpeechSynthesisUtterance(text);
-        msg.lang = 'zh-CN';
-        window.speechSynthesis.speak(msg);
-    } catch (e) {}
+function speak(type) {
+    let fileMap = {
+        "扭蛋机":"gift1",
+        "抓娃娃机":"gift2",
+        "幸运转盘":"gift3",
+        "猜爱心圆球":"gift4",
+        "刮刮乐":"gift5",
+        "marry":"marry",
+        "end":"end"
+    };
+    let fname = fileMap[type];
+    if(!fname) return;
+
+    let voice = new Audio("music/" + fname + ".mp3");
+    voice.volume = 1;
+    voice.play().catch(e=>{});
 }
 
 // 强制弹窗
@@ -226,13 +246,13 @@ function getGift(type) {
     // 所有奖品抽完，直接结束
     if(usedGifts.length >= normalGifts.length){
         showModal("🎊 所有礼物已全部抽完啦！🎊<br>请到下一页逛逛吧");
-        speak("所有礼物已全部抽完，请去下一页");
+        speak("end");
         return;
     }
 
     let result;
     // 80%概率中Marry me（无限抽，不计数）
-    if(Math.random() > 0.2) {
+    if(Math.random() > 0.4) {
         result = specialGift;
     } else {
         // 20%概率抽未中奖的普通奖品（抽中就计数，不再重复）
@@ -245,10 +265,10 @@ function getGift(type) {
     let text;
     if(result === specialGift){
         text = `🎉 恭喜你抽中【${type}】：${result} 🎉<br>在未来的某一天，当你愿意的时候，可以嫁给我嘛？`;
-        speak(`恭喜你抽中${type}大奖，嫁给我吧`);
+        speak("marry");
     }else{
         text = `🎁 恭喜你抽中【${type}】：${result} 🎁`;
-        speak(`恭喜你抽中${type}奖品，${result}`);
+        speak(type);
     }
     showModal(text);
 }
