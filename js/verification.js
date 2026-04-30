@@ -2,7 +2,7 @@ $('#login-button').click(function (event) {
     let userName = document.getElementById("userName").value;
     let pwd = document.getElementById("pwd").value;
     if (userName == "徐婧茹" && pwd == "010502") {
-        $('#h').text("欢迎回来！");
+        $('#h').text("公主殿下~欢迎回来！");
         event.preventDefault();
         $('form').fadeOut(500);
         $('.wrapper').addClass('form-success');
